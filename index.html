@@ -3,63 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kai's Minimalist Portfolio</title>
-    <!-- Load Tailwind CSS from CDN for simplicity and low cost -->
+    <title>Kye Ace Robinson's Portfolio</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <link href="https://api.fontshare.com/v2/css?f[]=array@400,700,900&display=swap" rel="stylesheet">
+    
     <style>
-        /* Custom styles for smooth scrolling and dark theme details */
-        html {
-            scroll-behavior: smooth;
-            font-family: 'Inter', sans-serif;
+        /* 3. Apply the font */
+        html, body {
+            font-family: 'Array', sans-serif !important;
         }
-        .header-shadow {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+        
+        /* Great Gatsby-inspired background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #000000;
+            z-index: -2;
+            pointer-events: none;
         }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(ellipse at 10% 30%, rgba(255, 0, 110, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 70%, rgba(0, 245, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 0%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(138, 43, 226, 0.12) 0%, transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        html::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 0, 110, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 30%, rgba(0, 245, 255, 0.08) 0%, transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+            animation: drift 20s ease-in-out infinite;
+        }
+        
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
+
+        /* Custom decorations */
+        .header-shadow { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
         .section-separator {
-            width: 100px;
-            height: 2px;
-            background-color: #3b82f6; /* Blue-500 */
+            width: 100px; height: 2px;
+            background-color: #00f5ff;
             margin: 0 auto 3rem auto;
             border-radius: 9999px;
+            box-shadow: 0 0 10px #00f5ff, 0 0 20px rgba(0, 245, 255, 0.6);
+        }
+        .orange-glow {
+            color: #ff006e;
+            text-shadow: 0 0 12px #ff006e, 0 0 22px rgba(255, 0, 110, 0.7);
+        }
+        .cyan-glow {
+            color: #00f5ff;
+            text-shadow: 0 0 12px #00f5ff, 0 0 22px rgba(0, 245, 255, 0.7);
+        }
+        .orange-glow.flicker {
+            animation: flicker 3s infinite;
+        }
+        .char-flicker {
+            opacity: 0.2 !important;
+            transition: opacity 0.3s ease-in;
+        }
+        .char-double-flicker {
+            animation: doubleFlicker 0.8s infinite;
+        }
+        @keyframes doubleFlicker {
+            0%, 100% { opacity: 1; }
+            15% { opacity: 0.2; }
+            25% { opacity: 1; }
+            45% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+        .cyan-glow:hover .char-wrapper {
+            opacity: 1 !important;
+            animation: none !important;
+        }
+        
+        /* Music player styles */
+        .music-player {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00f5ff;
+            border-radius: 20px;
+            padding: 10px 15px;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .music-player button {
+            background: #00f5ff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+        }
+        
+        .music-player button:hover {
+            background: #00e6ff;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.8);
+            transform: scale(1.1);
+        }
+        
+        .music-player input[type="range"] {
+            width: 150px;
+            height: 4px;
+            cursor: pointer;
+            accent-color: #00f5ff;
+        }
+        
+        .music-player span {
+            color: #00f5ff;
+            font-size: 12px;
+            min-width: 40px;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-200">
+<body class="bg-transparent text-gray-200">
 
-    <!-- Navigation Header -->
     <header class="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm header-shadow">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <a href="#home" class="text-2xl font-extrabold text-blue-500 hover:text-blue-400 transition duration-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 p-1">
+            <a href="#home" class="text-2xl font-extrabold orange-glow hover:text-orange-400 transition duration-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 p-1">
                 KYEACE.COM
             </a>
             <div class="space-x-4 flex">
-                <a href="#about" class="text-gray-300 hover:text-blue-500 px-3 py-2 rounded-lg font-medium transition duration-300">About</a>
-                <a href="#projects" class="text-gray-300 hover:text-blue-500 px-3 py-2 rounded-lg font-medium transition duration-300">Projects</a>
-                <a href="#contact" class="text-gray-300 hover:text-blue-500 px-3 py-2 rounded-lg font-medium transition duration-300">Contact</a>
+                <a href="#about" class="text-cyan-300 px-4 py-2 rounded-lg font-medium transition duration-300 bg-cyan-500/50 hover:bg-cyan-600/70 hover:scale-110 hover:shadow-xl hover:shadow-cyan-500/70 border border-cyan-400/70">About</a>
+                <a href="#projects" class="text-purple-200 px-4 py-2 rounded-lg font-medium transition duration-300 bg-purple-600/50 hover:bg-purple-700/70 hover:scale-110 hover:shadow-xl hover:shadow-purple-600/70 border border-purple-400/70">Projects</a>
+                <a href="#contact" class="text-pink-200 px-4 py-2 rounded-lg font-medium transition duration-300 bg-pink-600/50 hover:bg-pink-700/70 hover:scale-110 hover:shadow-xl hover:shadow-pink-600/70 border border-pink-400/70">Contact</a>
             </div>
         </nav>
     </header>
 
-    <!-- 1. Home / Hero Section -->
     <section id="home" class="h-screen flex items-center justify-center text-center px-4">
         <div class="max-w-4xl space-y-8">
             <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white">
-                Hi, I'm <span class="text-blue-500">Kai</span>.
+                Hi, I'm <span class="orange-glow">Kye Ace Robinson</span>.
             </h1>
             <p class="text-xl sm:text-2xl font-light text-gray-400 max-w-2xl mx-auto">
-                I design and build minimalist, performance-driven web experiences. Currently exploring static site generation and cloud infrastructure.
+                I .
             </p>
-            <a href="#projects" class="inline-block px-8 py-3 mt-6 text-lg font-semibold text-white bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50">
+            <a href="#projects" class="inline-block px-8 py-3 mt-6 text-lg font-semibold text-white bg-cyan-500 rounded-full shadow-lg hover:shadow-cyan-500/50 hover:bg-cyan-600 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-cyan-500 focus:ring-opacity-50">
                 View My Work
             </a>
         </div>
     </section>
 
-    <!-- 2. About Section -->
     <section id="about" class="py-20 bg-gray-800 px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold text-center text-white mb-12">About Me</h2>
+            <h2 class="text-4xl font-bold text-center cyan-glow mb-12">About Me</h2>
             <div class="section-separator"></div>
 
             <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -86,14 +220,12 @@
         </div>
     </section>
 
-    <!-- 3. Projects Section -->
     <section id="projects" class="py-20 bg-gray-900 px-4 sm:px-6 lg:px-8">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-bold text-center text-white mb-12">Featured Projects</h2>
             <div class="section-separator"></div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
                 <div class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300 transform hover:scale-[1.02]">
                     <h3 class="text-2xl font-bold text-white mb-2">Project Zero</h3>
                     <p class="text-sm text-blue-400 mb-4">Front-End Development & Data Visualization</p>
@@ -105,77 +237,116 @@
                         </svg>
                     </a>
                 </div>
-
-                <!-- Project Card 2 -->
-                <div class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300 transform hover:scale-[1.02]">
-                    <h3 class="text-2xl font-bold text-white mb-2">Wuxia RPG Website</h3>
-                    <p class="text-sm text-blue-400 mb-4">Concept Design & CSS Animation</p>
-                    <p class="text-gray-400 mb-4">A conceptual landing page for an open-world Wuxia game, featuring subtle parallax effects and atmospheric video backgrounds built with minimal assets.</p>
-                    <a href="#" class="text-blue-500 hover:text-blue-400 font-semibold flex items-center space-x-1" target="_blank" onclick="alert('Link disabled in this demo. Please replace # with your project link!'); return false;">
-                        <span>View Case Study</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                    </a>
-                </div>
-
-                <!-- Project Card 3 -->
-                <div class="bg-gray-800 p-6 rounded-xl shadow-xl border border-gray-700 hover:border-blue-500 transition duration-300 transform hover:scale-[1.02]">
-                    <h3 class="text-2xl font-bold text-white mb-2">Micro-Frontend POC</h3>
-                    <p class="text-sm text-blue-400 mb-4">Architecture & Static Hosting</p>
-                    <p class="text-gray-400 mb-4">Proof-of-concept for deploying independently built components onto a single static host (GitHub Pages) for scalable deployment.</p>
-                    <a href="#" class="text-blue-500 hover:text-blue-400 font-semibold flex items-center space-x-1" target="_blank" onclick="alert('Link disabled in this demo. Please replace # with your project link!'); return false;">
-                        <span>View Repository</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
+    
+    <!-- Music Player -->
+    <div class="music-player">
+        <span style="color: #00f5ff; font-size: 14px; font-weight: 500; text-align: center;">Mii Channel Theme</span>
+        <div class="music-controls">
+            <button id="playPauseBtn" aria-label="Play/Pause">
+                <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <polygon points="6,4 20,12 6,20" fill="#000"/>
+                </svg>
+                <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="hidden">
+                    <rect x="6" y="4" width="4" height="16" fill="#000"/>
+                    <rect x="14" y="4" width="4" height="16" fill="#000"/>
+                </svg>
+            </button>
+            <input type="range" id="musicSeek" value="0" min="0" max="100" step="1">
+            <span id="musicTime">0:00</span>
         </div>
-    </section>
-
-    <!-- 4. Contact Section -->
-    <section id="contact" class="py-20 bg-gray-800 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-4xl font-bold text-white mb-4">Get In Touch</h2>
-            <div class="section-separator"></div>
-            <p class="text-lg text-gray-400 mb-10">
-                I am currently open to new opportunities and collaborations. Feel free to reach out about projects, roles, or just to talk tech.
-            </p>
-
-            <div class="space-y-6">
-                <!-- Contact Button -->
-                <a href="mailto:your.email@example.com" class="inline-block px-10 py-4 text-xl font-bold text-gray-900 bg-blue-400 rounded-full shadow-2xl hover:bg-blue-300 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-400 focus:ring-opacity-50">
-                    Email Me Directly
-                </a>
-
-                <!-- Social Links -->
-                <div class="flex justify-center space-x-6 pt-6">
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="text-gray-400 hover:text-blue-500 transition duration-300" title="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.529-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    </a>
-                    <a href="https://github.com/yourusername" target="_blank" class="text-gray-400 hover:text-blue-500 transition duration-300" title="GitHub">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.08-.732.083-.718.083-.718 1.192.083 1.815 1.28 1.815 1.28 1.062 1.823 2.77 1.3 3.436.992.108-.773.418-1.3.762-1.6-2.639-.297-5.405-1.32-5.405-5.897 0-1.3.465-2.35 1.235-3.17-.123-.308-.532-1.491.114-3.132 0 0 1.006-.318 3.3-1.23a11.53 11.53 0 0 1 6 0c2.294.912 3.3 1.23 3.3 1.23.645 1.641.236 2.824.114 3.132.77.82 1.235 1.87 1.235 3.17 0 4.587-2.77 5.59-5.41 5.888.428.37.794 1.112.794 2.247v3.31c0 .317.19.694.797.576c4.766-1.586 8.2-6.084 8.2-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    </a>
-                    <a href="https://twitter.com/yourhandle" target="_blank" class="text-gray-400 hover:text-blue-500 transition duration-300" title="Twitter/X">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.79-1.574 2.162-2.722-.951.565-2.003.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.72-2.131-10.14-5.064-.4.688-.631 1.495-.631 2.342 0 1.677.84 3.15 2.11 4.015-.747-.023-1.465-.224-2.083-.57v.05c0 3.22 2.292 5.838 5.315 6.425-.57.157-1.178.225-1.808.234-.447.009-.887-.041-1.309-.127.836 2.616 3.284 4.521 6.177 4.564-2.275 1.792-5.11 2.898-8.15 2.898-.531 0-1.05-.031-1.564-.092 3.73 2.373 8.169 3.762 12.984 3.762 15.495 0 23.85-12.91 23.85-23.94 0-.363-.008-.725-.018-1.085.918-.671 1.705-1.503 2.334-2.456z"/></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800 py-8">
-        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
-            &copy; <span id="currentYear"></span> KYEACE.COM. Hosted for free via GitHub Pages.
-        </div>
-    </footer>
-
-    <!-- Simple JavaScript for dynamic year -->
+        <audio id="bgMusic" src="mii.mp3"></audio>
+    </div>
+    
     <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        const audio = document.getElementById('bgMusic');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        const seekBar = document.getElementById('musicSeek');
+        const musicTime = document.getElementById('musicTime');
+
+        playPauseBtn.onclick = () => {
+            if (audio.paused) {
+                audio.play();
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            } else {
+                audio.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            }
+        };
+
+        audio.addEventListener('timeupdate', () => {
+            seekBar.value = (audio.currentTime / audio.duration) * 100 || 0;
+            const minutes = Math.floor(audio.currentTime / 60);
+            const seconds = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+            musicTime.textContent = `${minutes}:${seconds}`;
+        });
+
+        seekBar.addEventListener('input', () => {
+            audio.currentTime = (seekBar.value / 100) * audio.duration;
+        });
+
+        audio.addEventListener('ended', () => {
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+            seekBar.value = 0;
+        });
+    </script>
+    
+    <script>
+        const orangeGlows = document.querySelectorAll('.orange-glow, .cyan-glow');
+        
+        // Function to wrap each character in a span
+        function wrapCharacters(element) {
+            const text = element.textContent;
+            element.innerHTML = '';
+            for (let char of text) {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.className = 'char-wrapper';
+                span.flickerTimeout = null;
+                element.appendChild(span);
+            }
+        }
+        
+        // Wrap characters for all orange-glow and cyan-glow elements
+        orangeGlows.forEach(glow => {
+            wrapCharacters(glow);
+        });
+        
+        // Update flicker animation continuously
+        setInterval(() => {
+            orangeGlows.forEach(glow => {
+                const chars = glow.querySelectorAll('.char-wrapper');
+                // Randomly decide which individual characters should flicker
+                chars.forEach(char => {
+                    // 2% chance to change state
+                    if (Math.random() > 0.98) {
+                        // Only trigger if not already flickering
+                        if (!char.classList.contains('char-flicker') && !char.classList.contains('char-double-flicker')) {
+                            // 10% chance of double flicker effect
+                            if (Math.random() > 0.9) {
+                                char.classList.add('char-double-flicker');
+                                // Auto-remove after animation completes
+                                if (char.flickerTimeout) clearTimeout(char.flickerTimeout);
+                                char.flickerTimeout = setTimeout(() => {
+                                    char.classList.remove('char-double-flicker');
+                                }, 800);
+                            } else {
+                                char.classList.add('char-flicker');
+                                // Auto-remove after a longer delay
+                                if (char.flickerTimeout) clearTimeout(char.flickerTimeout);
+                                char.flickerTimeout = setTimeout(() => {
+                                    char.classList.remove('char-flicker');
+                                }, 700);
+                            }
+                        }
+                    }
+                });
+            });
+        }, 150);
     </script>
 </body>
 </html>
